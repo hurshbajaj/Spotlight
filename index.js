@@ -32,30 +32,6 @@ function rise(images, min, max, totalDuration = 2000, maxDelay = 1500) {
     });
 }
 
-function drop(offset, totalDuration = 1500, maxDelay = 500) {
-    const spotlightEls = document.querySelectorAll(".spotlight");
-    const dynamixEls = document.querySelectorAll(".dynamix");
-
-    spotlightEls.forEach(el => {
-        const delay = Math.random() * maxDelay;
-        const duration = Math.max(0, totalDuration - delay);
-        el.style.transition = `bottom ${duration}ms ease ${delay}ms`;
-        el.style.position = "relative";
-        el.style.bottom = `-${offset}vh`;
-    });
-
-    dynamixEls.forEach(el => {
-        const delay = maxDelay + Math.random() * 300;
-        const duration = Math.max(0, totalDuration - delay + maxDelay);
-        el.style.transition = `bottom ${duration}ms ease ${delay}ms`;
-        el.style.position = "relative";
-        el.style.bottom = `-${offset}vh`;
-    });
-
-    document.querySelector('.sl')?.style.setProperty('width', '90vw');
-}
-
-
 function drop_init(offset, totalDuration = 1000, maxDelay = 500) {
     const others = document.querySelectorAll("img, .spotlight, .dynamix");
     const paragraphs = document.querySelectorAll("p");
@@ -70,9 +46,41 @@ function drop_init(offset, totalDuration = 1000, maxDelay = 500) {
     });
 }
 
+function drop(offset, totalDuration = 1500, maxDelay = 500) {
+    const spotlightEls = document.querySelectorAll(".spotlight");
+    const dynamixEls = document.querySelectorAll(".dynamix");
+
+    spotlightEls.forEach(el => {
+        const delay = Math.random() * maxDelay;
+        const duration = Math.max(0, totalDuration - delay);
+        const fadeDuration = 300;
+
+        el.style.transition =
+          `bottom ${duration}ms ease ${delay}ms, opacity ${fadeDuration}ms ease ${delay}ms`;
+        el.style.position = "relative";
+        el.style.bottom = `-${offset}vh`;
+        el.style.opacity = "0";
+    });
+
+    dynamixEls.forEach(el => {
+        const delay = maxDelay + Math.random() * 300;
+        const duration = Math.max(0, totalDuration - delay + maxDelay);
+        const fadeDuration = 600; // faster fade
+
+        el.style.transition =
+          `bottom ${duration}ms ease ${delay}ms, opacity ${fadeDuration}ms ease ${delay}ms`;
+        el.style.position = "relative";
+        el.style.bottom = `-${offset}vh`;
+        el.style.opacity = "0";
+    });
+
+    document.querySelector('.sl')?.style.setProperty('width', '90vw');
+}
 
 const imgs = document.querySelectorAll("img");
-rise(imgs, 0, -200, 1000, 300);
+window.onload = () => {
+    rise(imgs, 0, -200, 1000, 300);
+}
 
 document.querySelector(".sl")?.addEventListener("click", () => {
     drop_init(100)

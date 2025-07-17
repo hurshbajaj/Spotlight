@@ -66,7 +66,6 @@ img{
 p{
     position: relative;
     bottom: 0;
-    transition: bottom 1s ease-in-out;
 }
 
 .star {
@@ -80,10 +79,10 @@ p{
 
 @keyframes twinkle {
     0%, 100% {
-        opacity: 0.8;
+        opacity: 0.5;
     }
     50% {
-        opacity: 0.3;
+        opacity: 0.1;
     }
 }
 
