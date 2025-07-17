@@ -1,0 +1,97 @@
+:root{
+    --bg: #01161E;
+    --secondary: #598392;
+    --hyper_bg: #032A39;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: var(--bg);
+    margin-top: 3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    font-family: "JetBrains Mono", monospace;
+    letter-spacing: 15px;
+    overflow: hidden;
+}
+.sl {
+    background-color: var(--secondary);
+    width: 10vw;
+    height: 30px;
+    border-radius:8px;
+    transition: transform 0.2s ease, width 1s ease;
+}
+
+.sl:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+.main{
+    margin-top: 18vh;
+    text-align: center;
+}
+.dynamix {
+    color: var(--hyper_bg);
+    font-size: 30px;
+}
+.spotlight {
+    color: var(--secondary);
+    font-size: 45px;
+    margin-top: 10px;
+}
+
+.foot{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10vh;
+    overflow: hidden;
+}
+img{
+    width: 8vw;
+    position: relative;
+    bottom: -100vh;
+    transition: bottom 1s ease-in-out;
+}
+
+p{
+    position: relative;
+    bottom: 0;
+    transition: bottom 1s ease-in-out;
+}
+
+.star {
+    z-index: -100;
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle 2s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+
+@keyframes moveStars {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100vh);
+    }
+}
