@@ -41,6 +41,7 @@ body {
 .dynamix {
     color: var(--hyper_bg);
     font-size: 30px;
+    font-family: "JetBrains Mono SemiBold", monospace;
 }
 .spotlight {
     color: var(--secondary);
