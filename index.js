@@ -1,6 +1,5 @@
 import {generateStarField, rise} from "./utils.js"
 generateStarField();
-console.log("test");
 
 function drop_init(offset, totalDuration = 1000, maxDelay = 500) {
     const others = document.querySelectorAll("img, .spotlight, .dynamix");

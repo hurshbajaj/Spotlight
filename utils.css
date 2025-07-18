@@ -46,3 +46,11 @@
         transform: translateY(100vh);
     }
 }
+
+.fade_out {
+    opacity: 0;
+}
+
+.fade_in {
+    opacity: 1;
+}

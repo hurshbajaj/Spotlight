@@ -29,3 +29,12 @@ export function rise(images, min, max, totalDuration = 2000, maxDelay = 1500) {
         img.style.bottom = `${randomMargin}px`;
     });
 }
+
+export function fade_out() {
+    let el = document.querySelector("body");
+    el.style.opacity = 0;
+}
+export function fade_in() {
+    let el = document.querySelector("body");
+    el.style.opacity = 1;
+}

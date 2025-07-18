@@ -1,4 +1,9 @@
-import { generateStarField, rise } from './utils.js'
+import { generateStarField, rise, fade_out } from './utils.js'
+
+function FadeOut(){
+    fade_out();
+    window.location.href = "./SignUP.html";
+}
 
 generateStarField();
 
@@ -15,6 +20,8 @@ window.onload = () => {
     auth_o.style.opacity = 1;
 
     slideInFromLeft(document.querySelectorAll(".option"))
+
+    document.getElementById("auth_z").addEventListener("click", FadeOut);
 };
 
 function slideInFromLeft(elements, totalDuration = 1500, maxDelay = 500) {
@@ -29,3 +36,4 @@ function slideInFromLeft(elements, totalDuration = 1500, maxDelay = 500) {
         }, delay);
     });
 }
+
