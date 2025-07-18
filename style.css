@@ -17,24 +17,32 @@ html {
     top: 0;
     width: 100%;
     color: white;
-    margin-top: -2vh;
+
+}
+.transparent {
+    background-color: transparent;
+}
+.translucent {
+    background-color: rgba(0, 0, 0, 0.476);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .nav .container {
-    position: relative; /* needed to center .center */
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     width: 100%;
     box-sizing: border-box;
+    height: 9vh;
 }
 
-.nav .left,
-.nav .right {
+.nav .left, .nav .right {
     display: flex;
     align-items: center;
-    z-index: 1; /* keep them above .center if it overlaps */
+    z-index: 1; 
 }
 .nav .right {
     margin-left: auto;
@@ -66,16 +74,16 @@ html {
     padding: 10px 20px;
     border-radius: 5px;
     transition: color 0.3s ease;
-    color: rgba(255, 255, 255, 0.8); /* slightly dimmed by default */
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .nav a:hover {
-    color: rgba(255, 255, 255, 1); /* brighter on hover */
+    color: rgba(255, 255, 255, 1);
 }
 .nav .button {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px); /* for Safari support */
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: white;
     padding: 8px 16px;
@@ -112,8 +120,8 @@ html {
 
 .banner h1,
 .banner h2 {
-    margin: 0; /* remove default margin */
-    padding: 0.5em 0; /* some breathing room */
+    margin: 0; 
+    padding: 0.5em 0;
 }
 
 .banner h2 {
@@ -126,7 +134,7 @@ html {
 
 .banner h1 {
     font-family: 'DM Sans', sans-serif;
-    font-weight: 400; /* or any weight you want */
+    font-weight: 400; 
     font-variation-settings: "wght" 400;
     font-size: 3rem;
 }
@@ -138,7 +146,7 @@ html {
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    -webkit-backdrop-filter: blur(10px);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.2);
     cursor: pointer;
@@ -151,4 +159,13 @@ html {
     background: rgba(255, 255, 255, 0.16);
     transform: scale(1.04);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.search-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
 }
