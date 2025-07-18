@@ -20,7 +20,7 @@ body {
     top: calc(3vh + 40px);
     color: var(--hyper_bg);
     font-size: 25px;
-    letter-spacing: 15px;
+    letter-spacing: 8px;
     opacity: 0;
     transition: opacity 1s ease-out;
 }
