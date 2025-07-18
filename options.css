@@ -63,7 +63,7 @@ button:disabled:hover {
     border: none;
     color: var(--secondary);
     font-family: "JetBrains Mono ExtraBold", sans-serif;
-    letter-spacing: 6px;
+    letter-spacing: 1px;
     height: 7vh;
     font-size: 15px;
     padding: 0.5vh 25vw 0.5vh 1vw;
