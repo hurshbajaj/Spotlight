@@ -2,7 +2,9 @@ import { generateStarField, rise, fade_out } from './utils.js'
 
 function FadeOut(){
     fade_out();
+    setTimeout( () => {
     window.location.href = "./SignUP.html";
+    }, 1000);
 }
 
 generateStarField();
