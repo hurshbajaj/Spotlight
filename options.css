@@ -1,0 +1,105 @@
+@import "utils.css";
+
+body {
+    background-color: var(--bg);
+    margin-top: 3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    font-family: "JetBrains Mono", monospace;
+    letter-spacing: 15px;
+    overflow: hidden;
+}
+
+.spot {
+    position: fixed;
+    left: var(--lft);
+    top: calc(3vh + 40px);
+    color: var(--hyper_bg);
+    font-size: 25px;
+    letter-spacing: 15px;
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.auth {
+    position: fixed;
+    bottom: 2vh;
+    left: var(--lft);
+}
+
+button:disabled {
+    opacity: 0.5;
+}
+button:disabled:hover {
+    cursor: not-allowed;
+}
+
+.up:hover, .in:hover {
+    transition: transform 0.1s ease-out;
+    cursor: pointer;
+    transform: scale(0.95);
+}
+
+.main {
+    position: fixed;
+    left: calc(var(--lft) - 1vw);
+    top: 30vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    height: 40vh;
+}
+
+
+.option {
+    border: none;
+    color: var(--primaryDark);
+    font-family: "JetBrains Mono ExtraBold", sans-serif;
+    letter-spacing: 8px;
+    height: 7vh;
+    font-size: 15px;
+    padding: 0.5vh 25vw 0.5vh 1vw;
+    text-align: left;
+    border-radius: 10px;
+    background-color: var(--primary);
+    transform: translateX(-50vw);
+    position: relative;
+}
+
+.option:enabled:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.building {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    display: flex;
+}
+
+.building_el{
+    width: 8vw;
+    position: relative;
+    bottom: -100vh;
+    transition: bottom 1s ease-in-out;
+}
+
+.up, .in {
+    border: none;
+    background: var(--secondary);
+    color: var(--hyper_bg);
+    font-family: "JetBrains Mono ExtraBold", monospace;
+    border-radius: 5px;
+    height: 35px;
+    padding: 0 15px;
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+

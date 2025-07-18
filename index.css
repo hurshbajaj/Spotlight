@@ -1,13 +1,5 @@
-:root{
-    --bg: #01161E;
-    --secondary: #598392;
-    --hyper_bg: #032A39;
-}
+@import "utils.css";
 
-* {
-    margin: 0;
-    padding: 0;
-}
 body {
     background-color: var(--bg);
     margin-top: 3vh;
@@ -21,11 +13,9 @@ body {
     letter-spacing: 15px;
     overflow: hidden;
 }
+
 .sl {
-    background-color: var(--secondary);
     width: 10vw;
-    height: 30px;
-    border-radius:8px;
     transition: transform 0.2s ease, width 1s ease;
 }
 
@@ -69,29 +59,3 @@ p{
     bottom: 0;
 }
 
-.star {
-    z-index: -100;
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.8;
-    animation: twinkle 2s infinite ease-in-out;
-}
-
-@keyframes twinkle {
-    0%, 100% {
-        opacity: 0.5;
-    }
-    50% {
-        opacity: 0.1;
-    }
-}
-
-@keyframes moveStars {
-    from {
-        transform: translateY(0);
-    }
-    to {
-        transform: translateY(100vh);
-    }
-}
