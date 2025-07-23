@@ -18,6 +18,7 @@
     width: 90vw;
     height: 30px;
     border-radius:8px;
+    position: relative;
 }
 
 .star {

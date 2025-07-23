@@ -8,8 +8,19 @@ require("dotenv").config();
 const psr = new mongoose.Schema({
   gmail: { type: String, required: true, unique: true },
   verified: { type: Boolean, default: false },
-  code: { type: String }
+  code: { type: String },
+  todos: {
+    type: [
+      {
+        todo: { type: String, required: true },
+        dd: { type: String, required: true },
+        mark: { type: String, default: "todo" }
+      }
+    ],
+    required: true
+  }
 });
+
 const ps = mongoose.model("User", psr);
 
 const transporter = nodemailer.createTransport({
@@ -21,7 +32,6 @@ const transporter = nodemailer.createTransport({
 });
 
 router.post("/sign-up", async (req, res) => {
-  console.log("L: " + JSON.stringify(req.body));
   const { gmail } = req.body;
 
   if (!gmail) {
@@ -37,11 +47,9 @@ router.post("/sign-up", async (req, res) => {
       if (user.verified) {
         return res.status(400).json({ error: "A user with this Gmail already exists" });
       }
-      // User exists but not verified, reset the code
       user.code = code;
     } else {
-      // New user
-      user = new ps({ gmail, verified: false, code });
+      user = new ps({ gmail, verified: false, code, todos: [] });
     }
 
     await user.save();
@@ -81,8 +89,8 @@ router.post("/verify", async (req, res) => {
     user.verified = true;
     await user.save();
 
-    res.cookie("is_auth", "true", {
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    res.cookie("is_auth", `${gmail}`, {
+      maxAge: 7 * 24 * 60 * 60 * 1000,
       httpOnly: true,
       sameSite: "lax"
     });
@@ -96,7 +104,7 @@ router.post("/verify", async (req, res) => {
 
 router.get("/check-auth", async (req, res) => {
   if ("is_auth" in req.cookies) {
-    res.status(200).json({ is_auth: "I like rust." });
+    res.status(200).json({ is_auth: true });
   } else {
     res.status(200).json({ is_auth: false });
   }
@@ -106,5 +114,141 @@ router.get("/out", async (req, res) => {
   res.clearCookie("is_auth");
   res.redirect("/menu");
 });
+
+router.get("/todos", is_auth, async (req, res) => {
+  const gmail = req.cookies.is_auth;
+
+  try {
+    const user = await ps.findOne({ gmail });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.status(200).json({ todos: user.todos });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.post("/todos", is_auth, async (req, res) => {
+  const gmail = req.cookies.is_auth;
+  const { todo, dd } = req.body;
+
+  if (!todo || !dd) {
+    return res.status(400).json({ error: "todo and dd are required" });
+  }
+
+  try {
+    const user = await ps.findOne({ gmail });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    user.todos.push({ todo, dd });
+    await user.save();
+
+    res.status(200).json({ message: "Todo added", todos: user.todos });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.delete("/todos/:index", is_auth, async (req, res) => {
+  const gmail = req.cookies.is_auth;
+  const index = parseInt(req.params.index);
+
+  try {
+    const user = await ps.findOne({ gmail });
+    if (!user || index < 0 || index >= user.todos.length) {
+      return res.status(404).json({ error: "Invalid index" });
+    }
+
+    user.todos.splice(index, 1);
+    await user.save();
+    res.status(200).json({ message: "Todo deleted", todos: user.todos });
+  } catch (err) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.patch("/todos/move", is_auth, async (req, res) => {
+  const gmail = req.cookies.is_auth;
+  const { from, to } = req.body;
+
+  try {
+    const user = await ps.findOne({ gmail });
+    if (!user || from < 0 || to < 0 || from >= user.todos.length || to >= user.todos.length) {
+      return res.status(400).json({ error: "Invalid indices" });
+    }
+
+    const [moved] = user.todos.splice(from, 1);
+    user.todos.splice(to, 0, moved);
+    await user.save();
+
+    res.status(200).json({ message: "Todo moved", todos: user.todos });
+  } catch (err) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.patch("/todos/mark/:index", is_auth, async (req, res) => {
+  const gmail = req.cookies.is_auth;
+  const index = parseInt(req.params.index);
+
+  const cycle = ["todo", "doing", "done"];
+
+  try {
+    const user = await ps.findOne({ gmail });
+    if (!user || index < 0 || index >= user.todos.length) {
+      return res.status(404).json({ error: "Invalid index" });
+    }
+
+    const currentMark = user.todos[index].mark || "todo";
+    const nextMark = cycle[(cycle.indexOf(currentMark) + 1) % cycle.length];
+    user.todos[index].mark = nextMark;
+
+    await user.save();
+    res.status(200).json({ message: "Todo marked", todos: user.todos });
+  } catch (err) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.patch("/todos/edit/:index", is_auth, async (req, res) => {
+  const gmail = req.cookies.is_auth;
+  const index = parseInt(req.params.index);
+  const { todo, dd } = req.body;
+
+  if (!todo || !dd) {
+    return res.status(400).json({ error: "todo and dd are required" });
+  }
+
+  try {
+    const user = await ps.findOne({ gmail });
+    if (!user || index < 0 || index >= user.todos.length) {
+      return res.status(404).json({ error: "Invalid index" });
+    }
+
+    user.todos[index].todo = todo;
+    user.todos[index].dd = dd;
+    await user.save();
+
+    res.status(200).json({ message: "Todo edited", todos: user.todos });
+  } catch (err) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+function is_auth(req, res, nxt) {
+  if ("is_auth" in req.cookies) {
+    nxt();
+  } else {
+    res.redirect(`/menu`);
+  }
+}
 
 module.exports = router;

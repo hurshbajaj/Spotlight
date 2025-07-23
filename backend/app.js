@@ -38,10 +38,10 @@ app.listen(PORT, ()=>{
 })
 
 function is_auth(req, res, nxt) {
-    if (req.cookies.is_auth != 'true') {
-        res.redirect(`/menu`);
-    }else{
+    if ("is_auth" in req.cookies) {
         nxt()
+    }else{
+        res.redirect(`/menu`);
     }
 
 }

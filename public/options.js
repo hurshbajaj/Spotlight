@@ -79,6 +79,16 @@ window.onload = () => {
         //.then(data => {})
         .catch(_ => {});
     })
+    
+    fetch('/api/todos')
+        .then(res => res.json())
+        .then(data => {
+            checkTodosForToday(data.todos);
+    }).catch(e => {
+        alert(`${e}`);
+    });
+    
+
 };
 
 function slideInFromLeft(elements, totalDuration = 1500, maxDelay = 500) {
@@ -94,3 +104,22 @@ function slideInFromLeft(elements, totalDuration = 1500, maxDelay = 500) {
     });
 }
 
+function checkTodosForToday(todos) {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yyyy = today.getFullYear();
+    const todayStr = `${dd}/${mm}/${yyyy}`;
+
+    todos.forEach(todo => {
+        if (todo.dd == todayStr) {
+            if(todo.mark != "done"){
+                notif(todo)
+            }
+        }
+    });
+}
+
+function notif() {
+    document.getElementById("notif_circle").style.opacity = 1;
+}
