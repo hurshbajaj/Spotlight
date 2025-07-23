@@ -40,7 +40,7 @@ Crafted with dedication and a love for tech by **Hursh Bajaj**, an EXUN member w
 Just run this in your command-line to get the site up and running. (BASH)
 
 ```bash
-git clone https://github.com/your-username/spotlight.git && cd spotlight && npm install && nodemon backend/app.js
+git clone https://github.com/hurshbajaj/Spotlight-Dynamix && cd Spotlight-Dynamix && npm install && nodemon backend/app.js
 ```
 
 ## 🔧 How to use it
