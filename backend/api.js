@@ -265,7 +265,7 @@ router.post("/tt", is_auth, async (req, res) => {
   const { day, content } = req.body;
 
   const validDays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
-  if (!day || !content || !validDays.includes(day)) {
+  if (!day || !validDays.includes(day)) {
     return res.status(400).json({ error: "Invalid or missing day/content" });
   }
 

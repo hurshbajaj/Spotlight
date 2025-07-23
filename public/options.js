@@ -42,9 +42,7 @@ fetch("/api/check-auth", {
                   document.getElementById("auth_out").disabled = false;
             }
         })
-        .catch(_ => {
-      
-});
+        .catch(_ => {});
 
 window.onload = () => {
     let buildings = document.querySelectorAll(".building_el");
@@ -84,11 +82,8 @@ window.onload = () => {
         .then(res => res.json())
         .then(data => {
             checkTodosForToday(data.todos);
-    }).catch(e => {
-        alert(`${e}`);
-    });
+    }).catch();
     
-
 };
 
 function slideInFromLeft(elements, totalDuration = 1500, maxDelay = 500) {
