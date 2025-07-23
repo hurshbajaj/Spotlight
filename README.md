@@ -37,10 +37,18 @@ Crafted with dedication and a love for tech by **Hursh Bajaj**, an EXUN member w
 
 ## 📂 Getting Started (Local Setup)
 
-Just run this in your command-line to get the site up and running. (BASH)
+Just run these in your command-line to get the site up and running. (BASH)
+
+[env format]
+EMAIL_USER=
+EMAIL_PASS=
+MONGO_URI=
 
 ```bash
-git clone https://github.com/hurshbajaj/Spotlight-Dynamix && cd Spotlight-Dynamix && npm install && nodemon backend/app.js
+git clone https://github.com/hurshbajaj/Spotlight-Dynamix
+cd Spotlight-Dynamix
+npm install
+nodemon backend/app.js
 ```
 
 ## 🔧 How to use it
