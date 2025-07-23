@@ -31,11 +31,6 @@ app.use("/user", is_auth, express.static(path.join(__dirname, "../prot_pub"), {
 // API routes
 app.use("/api", api_router);
 
-// Catch-all: redirect to root
-app.use((req, res) => {
-  res.redirect("/");
-});
-
 // Auth middleware
 function is_auth(req, res, nxt) {
   if ("is_auth" in req.cookies) {
