@@ -2,33 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "backend/app.js",
+      "src": "api/backend.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "backend/api.js"
-    },
-    {
-      "src": "/prot_pub/(.*)",
-      "dest": "/prot_pub/$1"
-    },
-    {
-      "src": "/public/(.*)",
-      "dest": "/public/$1"
-    },
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "backend/app.js"
+      "dest": "api/backend.js"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }

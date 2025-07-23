@@ -33,10 +33,6 @@ app.use(express.static(path.join(__dirname, '../public'), {
 
 app.use("/api", api_router);
 
-app.listen(PORT, ()=>{
-    console.log(`Listening at PORT ${PORT}`);
-})
-
 function is_auth(req, res, nxt) {
     if ("is_auth" in req.cookies) {
         nxt()
@@ -45,3 +41,11 @@ function is_auth(req, res, nxt) {
     }
 
 }
+
+if(require.main === module){
+  app.listen(PORT, ()=>{
+      console.log(`Listening at PORT ${PORT}`);
+  })
+}
+
+module.exports = app;
