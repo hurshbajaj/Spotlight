@@ -33,6 +33,11 @@ app.use(express.static(path.join(__dirname, '../public'), {
 
 app.use("/api", api_router);
 
+app.use((req, res) => {
+  res.redirect("/");
+});
+
+
 function is_auth(req, res, nxt) {
     if ("is_auth" in req.cookies) {
         nxt()

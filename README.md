@@ -41,7 +41,7 @@ Just run these in your command-line to get the site up and running. (BASH)
 
 [env format] <br>
 EMAIL_USER= <br>
-EMAIL_PASS= <br>
+EMAIL_PASS= (app password)<br>
 MONGO_URI= <br>
 
 ```bash
