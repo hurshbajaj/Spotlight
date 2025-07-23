@@ -45,14 +45,10 @@ function is_auth(req, res, nxt) {
   }
 }
 
-// Local dev only
-if (require.main === module) {
-  const PORT = process.env.PORT || 8080;
-  app.listen(PORT, () => {
-    console.log(`Listening at PORT ${PORT}`);
-  });
-}
 
-module.exports = (req, res) => {
-  return app(req, res);
-};
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Listening at PORT ${PORT}`);
+});
+
+
