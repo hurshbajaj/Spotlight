@@ -39,10 +39,10 @@ Crafted with dedication and a love for tech by **Hursh Bajaj**, an EXUN member w
 
 Just run these in your command-line to get the site up and running. (BASH)
 
-[env format]
-EMAIL_USER=
-EMAIL_PASS=
-MONGO_URI=
+[env format] <br>
+EMAIL_USER= <br>
+EMAIL_PASS= <br>
+MONGO_URI= <br>
 
 ```bash
 git clone https://github.com/hurshbajaj/Spotlight-Dynamix
