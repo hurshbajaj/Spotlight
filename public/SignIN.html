@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUP</title>
+
+    <link rel="stylesheet" href="sign.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+   <div class="sl"></div> 
+   <p class="spot">Spotlight</p>
+   <p class="dynamix">Sign IN</p>
+
+    <div class="form">
+        <input type="text" id="gmailI" class="gmail" placeholder="gmail">
+        <input type="text" id="verifI" class="verif" placeholder="Verification Code">
+        <div class="btns">
+            <button class="back" onclick="window.location.href='menu'"><i class='bx bxs-left-arrow'></i></button>
+            <button id="submitBtn" class="submit"><i class='bx bxs-right-arrow'></i></button>
+        </div>
+        <p class="msgT" id="msgT">###</p>
+    </div>
+
+   <script type="module" src="./sign.js"></script>
+</body>
+</html>

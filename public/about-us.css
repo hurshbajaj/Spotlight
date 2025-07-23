@@ -1,0 +1,158 @@
+@import "utils.css";
+
+body {
+    background-color: var(--bg);
+    margin-top: 3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    font-family: "JetBrains Mono", monospace;
+    letter-spacing: 15px;
+    overflow: hidden;
+
+    transition: opacity 1s ease-out;
+}
+
+.spot {
+    margin-top: calc(3vh);
+    color: white;
+    font-size: 25px;
+    letter-spacing: 8px;
+    transition: opacity 1s ease-out;
+    margin-bottom: 4vh;
+    opacity: 0;
+
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 90vw;
+
+    height: 55vh;
+    border-bottom: solid;
+    border-width: 5px;
+    border-color: var(--secondary);
+}
+
+.heading {
+    background-color: var(--hyper_bg);
+    color: var(--secondary);
+    opacity: 0;
+
+    padding: 2vh 3vw;
+    border-radius: 3vw;
+    font-weight: 600;
+    letter-spacing: 10px;
+
+    margin-bottom: 8vh;
+    animation: fadeInUp 0.4s cubic-bezier(.77,0,.175,1) forwards;
+
+    font-size: 18px;
+}
+
+.line {
+    opacity: 0;
+    font-size: 12px;
+    max-width: 80vw;
+    line-height: 25px;
+
+    margin-bottom: 25px;
+
+    background-color: var(--hyper_bg);
+    color: var(--secondary);
+
+    padding: 2vh 3vw;
+    border-radius: 3vw;
+    font-weight: 600;
+    letter-spacing: 2px;
+
+    text-align: center;
+    opacity: 0.4;
+
+    animation: fadeInUpSemi 0.6s cubic-bezier(.77,0,.175,1);
+    transition: opacity 0.1s ease-out, transform 0.4s ease-out, letter-spacing 0.4s ease-out;
+}
+
+@keyframes fadeInUpSemi {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.line:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.mdiv{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    overflow-y: scroll;
+
+    overflow-y: scroll;        
+    scrollbar-width: none;     
+    -ms-overflow-style: none;  
+}
+
+.mdiv::-webkit-scrollbar {
+  display: none;           
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+button {
+    margin-top: 10vh;
+    animation: fadeInUp 0.8s 0.1s cubic-bezier(.77,0,.175,1) forwards;
+    opacity: 0;
+
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+
+    background-color: var(--secondary);
+    color: var(--hyper_bg);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

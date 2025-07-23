@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us</title>
+    <link rel="stylesheet" href="about-us.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="sl"></div>
+
+    <p id="spot" class="spot">Spotlight</p>
+
+    <div class="main">
+        <p class="heading">More about us</p>
+        <p class="txt" id="txt">
+            Ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum dicta qui nam dolorem ad aliquam impedit corporis obcaecati labore perspiciatis reprehenderit velit animi, expedita quasi adipisci ipsa, molestias officiis saepe.
+            Ipsum Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio ipsam reiciendis fuga eos minus ut architecto ab reprehenderit et suscipit temporibus pariatur, facere commodi, facilis mollitia beatae quibusdam, nesciunt corrupti?
+        </p>
+    </div>
+
+    <button onclick="window.location.href='/menu'"><i class='bx bx-transfer'></i></button>
+
+    <script type="module">
+        import {generateStarField, rise, fade_in} from "./utils.js"
+        generateStarField();
+        fade_in();
+
+        function splitIntoLinesWithWrapper(id) {
+            const original = document.getElementById(id);
+
+            const lines = original.textContent.split('.');
+            const parent = original.parentNode;
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'mdiv';
+
+            lines.forEach(line => {
+                const lineDiv = document.createElement('div');
+                lineDiv.className = 'line';
+                lineDiv.textContent = line;
+                wrapper.appendChild(lineDiv);
+            });
+
+            parent.replaceChild(wrapper, original);
+        }
+
+        splitIntoLinesWithWrapper("txt");
+
+    </script>
+</body>
+</html>

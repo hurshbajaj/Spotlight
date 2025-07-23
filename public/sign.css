@@ -44,12 +44,12 @@ input:disabled:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
 
-    height: 30vh;
+    height: 40vh;
 
     position: fixed;
     top: calc(3vh + 240px);
-
 }
 
 
@@ -83,6 +83,8 @@ input:disabled:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    margin-bottom: 8vh;
 }
 
 .back, .submit {
@@ -107,4 +109,8 @@ input:disabled:hover {
     width: 45%;
 }
 
-
+.msgT {
+    color: var(--secondary);
+    letter-spacing: 5px;
+    text-align: center;
+}

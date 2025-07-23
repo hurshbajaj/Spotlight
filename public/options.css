@@ -40,7 +40,7 @@ button:disabled:hover {
     cursor: not-allowed;
 }
 
-.up:hover, .in:hover {
+.up:hover, .in:hover, .out:hover {
     transition: transform 0.1s ease-out;
     cursor: pointer;
     transform: scale(0.95);
@@ -55,7 +55,7 @@ button:disabled:hover {
     flex-direction: column;
     justify-content: space-around;
 
-    height: 40vh;
+    height: 30vh;
 }
 
 
@@ -63,7 +63,7 @@ button:disabled:hover {
     border: none;
     color: var(--secondary);
     font-family: "JetBrains Mono ExtraBold", sans-serif;
-    letter-spacing: 6px;
+    letter-spacing: 4px;
     height: 7vh;
     font-size: 15px;
     padding: 0.5vh 25vw 0.5vh 1vw;
@@ -93,7 +93,7 @@ button:disabled:hover {
     transition: bottom 1s ease-in-out;
 }
 
-.up, .in {
+.up, .in, .out {
     border: none;
     background: var(--secondary);
     color: var(--hyper_bg);
@@ -105,3 +105,9 @@ button:disabled:hover {
     transition: opacity 1s ease-out;
 }
 
+.up:disabled,
+.in:disabled,
+.out:disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed;
+}

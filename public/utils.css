@@ -1,0 +1,56 @@
+:root{
+    --bg: #01161E;
+    --primary: #032A39;
+    --primaryDark: #044259;
+    --secondary: #598392;
+    --hyper_bg: #032A39;
+
+    --lft: 5vw;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.sl {
+    background-color: var(--secondary);
+    width: 90vw;
+    height: 30px;
+    border-radius:8px;
+}
+
+.star {
+    z-index: -100;
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle 2s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.1;
+    }
+}
+
+@keyframes moveStars {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+.fade_out {
+    opacity: 0;
+}
+
+.fade_in {
+    opacity: 1;
+}

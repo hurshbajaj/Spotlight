@@ -21,7 +21,7 @@ function drop(offset, totalDuration = 1500, maxDelay = 500) {
 
     spotlightEls.forEach(el => {
         const delay = Math.random() * maxDelay;
-        const duration = Math.max(0, totalDuration - delay);
+        const duration = Math.max(0, totalDuration - delay); //ue
         const fadeDuration = 300;
 
         el.style.transition =
@@ -33,7 +33,7 @@ function drop(offset, totalDuration = 1500, maxDelay = 500) {
 
     dynamixEls.forEach(el => {
         const delay = maxDelay + Math.random() * 300;
-        const duration = Math.max(0, totalDuration - delay + maxDelay);
+        const duration = Math.max(0, totalDuration - delay + maxDelay); //offset p.
         const fadeDuration = 600; // faster fade
 
         el.style.transition =
@@ -54,6 +54,6 @@ window.onload = () => {
 document.querySelector(".sl")?.addEventListener("click", () => {
     drop_init(100)
     drop(100);
-    setTimeout(() => window.location.href = "options.html", 1500);
+    setTimeout(() => window.location.href = "/menu", 1500);
 
 });

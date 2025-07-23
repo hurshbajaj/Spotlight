@@ -1,0 +1,175 @@
+@import "utils.css";
+
+:root{
+    --border_radius: 11px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    margin-top: 3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    font-family: "JetBrains Mono", monospace;
+    letter-spacing: 15px;
+    overflow: hidden;
+
+    transition: opacity 1s ease-out;
+}
+
+.spot {
+    margin-top: 15px;
+    color: white;
+    font-size: 25px;
+    letter-spacing: 8px;
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+button:disabled {
+    opacity: 0.5;
+}
+button:disabled:hover {
+    cursor: not-allowed;
+}
+
+.main{
+    margin-top: 4vh;
+    height: 69.5vh;
+    width: 90vw;
+    display: flex;
+    margin-bottom: 1.5vh;
+}
+.lhs{
+    height: 100%;
+    flex: 2;
+    background-color: rgba(240, 248, 255, 0.196);
+    margin-right: 1.5vh;
+    opacity: 0;
+    animation: fadeInUp 0.5s 0.2s cubic-bezier(.77,0,.175,1) forwards;
+
+    border-radius: var(--border_radius) 0px 0px var(--border_radius);
+    border: solid;
+    border-width: 5px;
+    border-color: rgba(240, 248, 255, 0.196);
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+
+    padding: 2vh;
+    overflow-y: scroll;     
+    scrollbar-width: none;     
+    -ms-overflow-style: none;  
+}
+.lhs::-webkit-scrollbar {
+  display: none;           
+}
+.rhs{
+    height: 100%;
+    flex: 1;
+    background-color: rgba(201, 228, 251, 0.196);
+    opacity: 0;
+    animation: fadeInUp 0.5s 0.2s cubic-bezier(.77,0,.175,1) forwards;
+
+    border-radius: 0px var(--border_radius) var(--border_radius) 0px;
+    border: solid;
+    border-width: 5px;
+    border-color: rgba(201, 228, 251, 0.196);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item {
+    padding: 20px 10vh;
+
+    background-color: rgba(201, 228, 251, 0.196);
+    color: rgba(255, 255, 255, 0.484);
+
+    border: solid;
+    border-width: 5px;
+    border-color: rgba(201, 228, 251, 0.196);
+    border-radius: var(--border_radius) ;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hint {
+    flex: 1;
+    opacity: 0;
+    letter-spacing: 4px;
+
+    background-color: rgba(201, 228, 251, 0.196);
+    color: rgba(255, 255, 255, 0.484);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border_radius) ;
+    border: solid;
+    border-width: 5px;
+    border-color: rgba(201, 228, 251, 0.196);
+    width: 90%;
+
+    margin-bottom: 4vh;
+    transition: background-color 0.2s ease-out;
+}
+.hint:nth-child(1){
+    margin-top: 4vh;
+}
+.hint:hover{
+    background-color: rgba(201, 228, 251, 0.267);
+    cursor: pointer;
+}
+
+.nav {
+    height: 5vh;
+    width: 90vw;
+    background-color: rgba(201, 228, 251, 0.196);
+    border: none;
+    opacity: 0;
+    letter-spacing: 2px;
+
+    animation: fadeInUp 0.5s 0.3s cubic-bezier(.77,0,.175,1) forwards;
+    transition: background-color 0.2s ease;
+
+    border-left: solid;
+    border-width: 10px;
+    border-radius: calc(var(--border_radius) - 4px);
+    border-color: rgba(201, 228, 251, 0.196);
+    font-size: 15px;
+
+    padding-left: 10px;
+    color: rgba(255, 255, 255, 0.503);
+}
+
+.nav:focus{
+    outline: none;
+    background-color: rgba(201, 228, 251, 0.07);
+    color: rgba(255, 255, 255, 0.736);
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
