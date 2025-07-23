@@ -58,10 +58,11 @@ You must be signed in to access **Let's Go**. Authorization involves a mail bein
 
 ![alt text](imgs/image.png)
 
-A list of commands given on the right hand side will help you make your mundane planning much more comfortable & efficient. *Example Command* 
+A list of commands given on the right hand side will help you make your mundane planning much more comfortable & easier. *Example Command* 
 <br>
 ```new dynamix submission | 23/07/2025```
 <br>
+Note: The input field is the horizontal strip at the bottom of the page!
 To navigate to the next page, use Shift + Enter until you will be brought back to /menu. Make sure to edit content in the (2) TIMETABLE integration you double click on the textbox / area and enter to save it. the (3) Study Room is fairly self explanatory.
 
 
