@@ -109,6 +109,26 @@ button:disabled:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    animation: fadeInUp 0.8s 0.2s cubic-bezier(.77,0,.175,1) forwards;
+}
+
+.itemREF {
+    padding: 20px 10vh;
+    margin-bottom: 4vh;
+
+    letter-spacing: 5px;
+    background-color: rgba(201, 228, 251, 0.196);
+    color: rgba(255, 255, 255, 0.484);
+
+    border: solid;
+    border-width: 5px;
+    border-color: rgba(201, 228, 251, 0.196);
+    border-radius: var(--border_radius) ;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hint {

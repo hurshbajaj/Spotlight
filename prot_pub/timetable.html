@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Room</title>
+  <link rel="stylesheet" href="timetable.css"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet"/>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+</head>
+<body>
+  <div class="sl"></div> 
+  <p class="spot" id="spot">Spotlight</p>
+  <p class="dynamix">Timetable</p>
+
+  <div class="main">
+    <div class="tp">
+      <p class="cbtn left"><i class='bx bxs-left-arrow'></i></p>
+      <div class="top">
+        <p class="dayp">Monday</p>
+      </div>
+      <p class="cbtn right"><i class='bx bxs-right-arrow'></i></p>
+    </div>
+
+    <div class="mid">
+      <p class="date">00/00/0000</p>
+      <p class="clr">clear all</p>
+    </div>
+
+    <textarea class="bot" readonly></textarea>
+  </div>
+
+  <script type="module">
+    import { generateStarField, rise, fade_out, fade_in } from './utils.js';
+    fade_in();
+
+    function FadeOut(){
+      fade_out();
+      setTimeout(() => {
+        window.location.href = "/user/rooms";
+      }, 1000);
+    }
+
+    generateStarField();
+
+    const dayOrder = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    const dayMap = {
+      Monday: "mon",
+      Tuesday: "tue",
+      Wednesday: "wed",
+      Thursday: "thu",
+      Friday: "fri",
+      Saturday: "sat",
+      Sunday: "sun"
+    };
+
+    const ta = document.querySelector("textarea");
+    const dayP = document.querySelector(".dayp");
+
+    window.onload = () => {
+      let spotlight_icon = document.getElementById("spot");
+      spotlight_icon.style.opacity = 1;
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" && event.shiftKey) {
+          FadeOut();
+        }
+      });
+
+      document.querySelector(".clr").addEventListener("click", () => {
+        fetch("/api/tt", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json"
+          },
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log("Patch success:", data);
+        })
+        .catch(err => {
+          console.error("Patch error:", err);
+        });
+      });
+
+      document.querySelector(".left").addEventListener("click", () => {
+        let currentIndex = dayOrder.indexOf(dayP.textContent);
+        currentIndex = (currentIndex - 1 + 7) % 7;
+        dayP.textContent = dayOrder[currentIndex];
+        refresh();
+      });
+
+      document.querySelector(".right").addEventListener("click", () => {
+        let currentIndex = dayOrder.indexOf(dayP.textContent);
+        currentIndex = (currentIndex + 1) % 7;
+        dayP.textContent = dayOrder[currentIndex];
+        refresh();
+      });
+
+      ta.addEventListener("dblclick", () => ta.readOnly = false);
+
+      ta.addEventListener("keydown", e => {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          ta.readOnly = true;
+
+          fetch("/api/tt", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              day: dayMap[dayP.textContent],      
+              content: ta.value
+            })
+          });
+        }
+      });
+
+      refresh(); // Initial load
+    };
+
+    function refresh() {
+      const dayName = dayP.textContent;
+      document.querySelector(".date").textContent = getDateOfThisWeek(dayName);
+
+      fetch(`/api/tt?day=${dayMap[dayName]}`)
+        .then(res => res.json())
+        .then(data => {
+          ta.value = data.content;
+        })
+        .catch(err => {
+          console.error("GET error:", err);
+          ta.value = "";
+        });
+    }
+
+    function getDateOfThisWeek(dayName) {
+      const dayMap = {
+        sunday: 0,
+        monday: 1,
+        tuesday: 2,
+        wednesday: 3,
+        thursday: 4,
+        friday: 5,
+        saturday: 6
+      };
+
+      const today = new Date();
+      const todayDay = today.getDay();
+      const targetDay = dayMap[dayName.toLowerCase()];
+      const diff = targetDay - todayDay;
+
+      const targetDate = new Date(today);
+      targetDate.setDate(today.getDate() + diff);
+
+      const dd = String(targetDate.getDate()).padStart(2, '0');
+      const mm = String(targetDate.getMonth() + 1).padStart(2, '0');
+      const yyyy = targetDate.getFullYear();
+
+      return `${dd}/${mm}/${yyyy}`;
+    }
+  </script>
+</body>
+</html>

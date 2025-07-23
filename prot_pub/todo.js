@@ -32,7 +32,34 @@ window.onload = () => {
 
 const lhs = document.querySelector(".lhs");
 
-window.addEventListener("DOMContentLoaded", fetchTodos);
+window.addEventListener("DOMContentLoaded", fetchTodosAnim);
+
+async function fetchTodosAnim() {
+  try {
+    const res = await fetch("/api/todos", {
+      method: "GET",
+      credentials: "include", 
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      console.error("Failed to fetch todos:", data.error);
+      return;
+    }
+
+    lhs.innerHTML = "";
+
+    data.todos.forEach(({ todo, dd, mark }, idx) => {
+      const p = document.createElement("p");
+      p.classList.add("item");
+      p.textContent = `#${idx} | ${todo} | ${dd} | ${mark}`;
+      lhs.appendChild(p);
+    });
+  } catch (err) {
+    console.error("Error fetching todos:", err);
+  }
+}
 
 async function fetchTodos() {
   try {
@@ -52,7 +79,7 @@ async function fetchTodos() {
 
     data.todos.forEach(({ todo, dd, mark }, idx) => {
       const p = document.createElement("p");
-      p.classList.add("item");
+      p.classList.add("itemREF");
       p.textContent = `#${idx} | ${todo} | ${dd} | ${mark}`;
       lhs.appendChild(p);
     });

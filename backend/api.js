@@ -18,6 +18,15 @@ const psr = new mongoose.Schema({
       }
     ],
     required: true
+  },
+  tt: {
+    mon: { type: String, default: "" },
+    tue: { type: String, default: "" },
+    wed: { type: String, default: "" },
+    thu: { type: String, default: "" },
+    fri: { type: String, default: "" },
+    sat: { type: String, default: "" },
+    sun: { type: String, default: "" }
   }
 });
 
@@ -33,10 +42,7 @@ const transporter = nodemailer.createTransport({
 
 router.post("/sign-up", async (req, res) => {
   const { gmail } = req.body;
-
-  if (!gmail) {
-    return res.status(400).json({ error: "Gmail is required" });
-  }
+  if (!gmail) return res.status(400).json({ error: "Gmail is required" });
 
   const code = Math.floor(100000 + Math.random() * 900000).toString();
 
@@ -49,7 +55,7 @@ router.post("/sign-up", async (req, res) => {
       }
       user.code = code;
     } else {
-      user = new ps({ gmail, verified: false, code, todos: [] });
+      user = new ps({ gmail, verified: false, code, todos: [], tt: {} });
     }
 
     await user.save();
@@ -70,21 +76,13 @@ router.post("/sign-up", async (req, res) => {
 
 router.post("/verify", async (req, res) => {
   const { gmail, code } = req.body;
-
-  if (!gmail || !code) {
-    return res.status(400).json({ error: "Missing gmail or code" });
-  }
+  if (!gmail || !code) return res.status(400).json({ error: "Missing gmail or code" });
 
   try {
     const user = await ps.findOne({ gmail });
+    if (!user) return res.status(404).json({ error: "User not found" });
 
-    if (!user) {
-      return res.status(404).json({ error: "User not found" });
-    }
-
-    if (user.code !== code) {
-      return res.status(401).json({ error: "Invalid code" });
-    }
+    if (user.code !== code) return res.status(401).json({ error: "Invalid code" });
 
     user.verified = true;
     await user.save();
@@ -117,13 +115,9 @@ router.get("/out", async (req, res) => {
 
 router.get("/todos", is_auth, async (req, res) => {
   const gmail = req.cookies.is_auth;
-
   try {
     const user = await ps.findOne({ gmail });
-
-    if (!user) {
-      return res.status(404).json({ error: "User not found" });
-    }
+    if (!user) return res.status(404).json({ error: "User not found" });
 
     res.status(200).json({ todos: user.todos });
   } catch (err) {
@@ -142,10 +136,7 @@ router.post("/todos", is_auth, async (req, res) => {
 
   try {
     const user = await ps.findOne({ gmail });
-
-    if (!user) {
-      return res.status(404).json({ error: "User not found" });
-    }
+    if (!user) return res.status(404).json({ error: "User not found" });
 
     user.todos.push({ todo, dd });
     await user.save();
@@ -242,6 +233,76 @@ router.patch("/todos/edit/:index", is_auth, async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
+router.patch("/tt", is_auth, async (req, res) => {
+  console.log("patch");
+  const gmail = req.cookies.is_auth;
+
+  try {
+    const user = await ps.findOne({ gmail });
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    user.tt = {
+      mon: "",
+      tue: "",
+      wed: "",
+      thu: "",
+      fri: "",
+      sat: "",
+      sun: ""
+    };
+
+    await user.save();
+    res.status(200).json({ message: "tt fields cleared", tt: user.tt });
+  } catch (err) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.post("/tt", is_auth, async (req, res) => {
+  console.log("post");
+  const gmail = req.cookies.is_auth;
+  const { day, content } = req.body;
+
+  const validDays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+  if (!day || !content || !validDays.includes(day)) {
+    return res.status(400).json({ error: "Invalid or missing day/content" });
+  }
+
+  try {
+    const user = await ps.findOne({ gmail });
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    user.tt[day] = content;
+    await user.save();
+
+    res.status(200).end();
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.get("/tt", is_auth,async (req, res) => {
+    try {
+        const day = req.query.day;
+        const userId = req.cookies?.is_auth;
+
+        if (!day || !userId) return res.status(400).send("Missing day or user ID");
+
+        const user = await ps.findOne({ gmail: userId });
+
+        if (!user || !user.tt) {
+            return res.status(404).send("No data found for given day");
+        }
+
+        res.json({ content: user.tt[day] });
+    } catch (err) {
+        console.error("GET /tt error:", err);
+        res.status(500).send("Server error");
+    }
+});
+
 
 function is_auth(req, res, nxt) {
   if ("is_auth" in req.cookies) {
