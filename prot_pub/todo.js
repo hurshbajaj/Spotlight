@@ -4,13 +4,7 @@ fade_in();
 function FadeOut(){
     fade_out();
     setTimeout(() => {
-        window.location.href = "/timetable";
-    }, 1000);
-}
-function FadeOut2(){
-    fade_out();
-    setTimeout(() => {
-        window.location.href = "/menu";
+        window.location.href = "/user/timetable";
     }, 1000);
 }
 
@@ -27,6 +21,13 @@ window.onload = () => {
         const extraDelay = 0.1 * i; 
         el.style.animation = `fadeInUp 0.5s ${baseDelay + extraDelay}s cubic-bezier(.77,0,.175,1) forwards`;
     });
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' && event.shiftKey) {
+            FadeOut()
+        }
+    });
+
 };
 
 const lhs = document.querySelector(".lhs");

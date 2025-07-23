@@ -33,48 +33,17 @@ body {
     transition: opacity 1s ease-out;
 }
 
-button:disabled {
-    opacity: 0.5;
-}
-button:disabled:hover {
-    cursor: not-allowed;
-}
-
 .main{
     margin-top: 4vh;
     height: 69.5vh;
     width: 90vw;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 1.5vh;
 }
-.lhs{
-    height: 100%;
-    flex: 2;
-    background-color: rgba(240, 248, 255, 0.196);
-    margin-right: 1.5vh;
-    opacity: 0;
-    animation: fadeInUp 0.5s 0.2s cubic-bezier(.77,0,.175,1) forwards;
 
-    border-radius: var(--border_radius) 0px 0px var(--border_radius);
-    border: solid;
-    border-width: 5px;
-    border-color: rgba(240, 248, 255, 0.196);
-
-    position: relative;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-
-    padding: 2vh;
-    overflow-y: scroll;     
-    scrollbar-width: none;     
-    -ms-overflow-style: none;  
-}
-.lhs::-webkit-scrollbar {
-  display: none;           
-}
+.lhs,
 .rhs{
     height: 100%;
     flex: 1;
@@ -82,7 +51,7 @@ button:disabled:hover {
     opacity: 0;
     animation: fadeInUp 0.5s 0.2s cubic-bezier(.77,0,.175,1) forwards;
 
-    border-radius: 0px var(--border_radius) var(--border_radius) 0px;
+    border-radius: var(--border_radius);
     border: solid;
     border-width: 5px;
     border-color: rgba(201, 228, 251, 0.196);
@@ -90,7 +59,53 @@ button:disabled:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
+    text-align: center;
+}
+.head{
+    flex: 1;
+    background-color: rgba(201, 228, 251, 0.196);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    color: var(--bg);
+
+    letter-spacing: 5px;
+}
+.body{
+    flex:1;
+    letter-spacing: 5px;
+    padding: 5vh;
+    font-size: 15px;
+    line-height: 30px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bg);
+
+    transition: all 0.3s ease-out;
+}
+
+.lhs:hover, .rhs:hover{
+    opacity: 0.8 !important;
+    cursor: pointer;
+}
+.lhs:hover .body, .rhs:hover .body{
+    transform: translateY(-12px);
+}
+
+.cp{
+    flex: 1;
+    color: white;
+    text-align: center;
+
+    opacity: 0;
+    animation: fadeInUp 0.5s 0.4s cubic-bezier(.77,0,.175,1) forwards;
 }
 
 .item {
@@ -163,10 +178,6 @@ button:disabled:hover {
     outline: none;
     background-color: rgba(201, 228, 251, 0.07);
     color: rgba(255, 255, 255, 0.736);
-}
-
-.nav::placeholder {
-    color: rgba(201, 228, 251, 0.196);
 }
 
 @keyframes fadeInUp {

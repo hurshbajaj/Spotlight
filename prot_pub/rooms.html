@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Todo</title>
-    <link rel="stylesheet" href="todo.css">
+    <link rel="stylesheet" href="rooms.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,22 +17,17 @@
     <p id="spot" class="spot">Spotlight</p>
 
     <div class="main">
-        <div class="lhs">
-            <p class="item"></p>
+        <div class="lhs" onclick="window.open('https://meet.google.com/new', '_blank')">
+            <div class="head">Create A New Meet</div>
+            <div class="body">Want to start a new study session? Click Me!</div>
         </div>
-        <div class="rhs">
-            <div class="hint" title="Create a new Item">new ...</div>
-            <div class="hint" title="Kill an Item">kill #x</div>
-            <div class="hint" title="Move an Item">mov #x #y</div>
-            <div class="hint" title="Change Item mark [pending | doing | todo]">mark #x</div>
-            <div class="hint" title="Edit an Item">edit #x ...</div>
+        <p class="cp">Study Rooms</p>
+        <div class="rhs" onclick="window.open('/user/room')">
+            <div class="head">Join a Meet</div>
+            <div class="body">Want to join another study session? Click Me!</div>
         </div>
     </div>
 
-    <input class="nav">
-
-    </input>
-
-    <script type="module" src="todo.js"></script>
+    <script type="module" src="rooms.js"></script>
 </body>
 </html>
