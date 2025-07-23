@@ -1,56 +1,58 @@
 const express = require("express");
-let cp = require("cookie-parser");
+const cp = require("cookie-parser");
 const path = require("path");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 const api_router = require("./api.js");
 
-const dotenv = require("dotenv");
 dotenv.config();
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-}).then(() => console.log("MongoDB connected"))
-  .catch(err => console.log("MongoDB connection error:", err));
+})
+.then(() => console.log("MongoDB connected"))
+.catch(err => console.log("MongoDB connection error:", err));
 
-let app = express();
-const PORT = 8080;
+const app = express();
 
 app.use(cp());
 app.use(express.json());
 
-app.use('/static', express.static(path.join(__dirname, "../static")));
-
-//protected routes, in ../prot_pub
-
-app.use("/user",is_auth ,express.static(path.join(__dirname, "../prot_pub"), {
-  extensions: ['html']
+// Serve static folders
+app.use("/static", express.static(path.join(__dirname, "../static")));
+app.use("/public", express.static(path.join(__dirname, "../public"), {
+  extensions: ["html"]
+}));
+app.use("/user", is_auth, express.static(path.join(__dirname, "../prot_pub"), {
+  extensions: ["html"]
 }));
 
-app.use(express.static(path.join(__dirname, '../public'), {
-  extensions: ['html']
-}));
-
+// API routes
 app.use("/api", api_router);
 
+// Catch-all: redirect to root
 app.use((req, res) => {
   res.redirect("/");
 });
 
-
+// Auth middleware
 function is_auth(req, res, nxt) {
-    if ("is_auth" in req.cookies) {
-        nxt()
-    }else{
-        res.redirect(`/menu`);
-    }
-
+  if ("is_auth" in req.cookies) {
+    nxt();
+  } else {
+    res.redirect("/menu");
+  }
 }
 
-if(require.main === module){
-  app.listen(PORT, ()=>{
-      console.log(`Listening at PORT ${PORT}`);
-  })
+// Local dev only
+if (require.main === module) {
+  const PORT = process.env.PORT || 8080;
+  app.listen(PORT, () => {
+    console.log(`Listening at PORT ${PORT}`);
+  });
 }
 
-module.exports = app;
+module.exports = (req, res) => {
+  return app(req, res);
+};
