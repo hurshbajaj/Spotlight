@@ -1,9 +1,7 @@
 # 🌟 Spotlight
 ---
 ---
-Quickstart: so just make sure to click the cyan button on top to progress from the landing page, and after you've reached the todo list... shift + enter to navigate through the different pages. Feel free to scroll down to the very bottom for some sneak peaks :D
----
-**Spotlight** is a powerful productivity platform built to help students manage their time, organize their work, and make their study process more efficient — all in one place.  
+**Spotlight** is a powerful productivity platform built to help students manage their time, organize their work, and make their study process more efficient — all in one place.
 
 ---
 ## 🚀 Features
@@ -74,6 +72,7 @@ A list of commands given on the right hand side will help you make your mundane 
 <br>
 **Note: The input field is the horizontal strip at the bottom of the page!
 To navigate to the next page, use Shift + Enter until you will be brought back to /menu. Make sure to edit content in the (2) TIMETABLE integration you double click on the textbox / area and enter to save it. The (3) Study Room is fairly simple & self-explanatory as well.
+
 
 
 
