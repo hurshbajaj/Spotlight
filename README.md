@@ -1,7 +1,7 @@
 # 🌟 Spotlight
-Note: If you don’t wish to read the full README.md, just make sure to progress from the landing page by clicking on the cyan button on top, and use Shift + Enter to navigate around once you’ve hit the to-do list for ease of work.  
+**Spotlight** is a powerful productivity platform built to help students manage their time, organize their work, and make their study process more efficient — all in one place.  
 <br>
-**Spotlight** is a powerful productivity platform built to help students manage their time, organize their work, and make their study process more efficient — all in one place.
+Note: If you don’t wish to read the full README.md, just make sure to progress from the landing page by clicking on the cyan button on top, and use Shift + Enter to navigate around once you’ve hit the to-do list for ease of work.
 
 ---
 ## 🚀 Features
@@ -49,6 +49,7 @@ git clone https://github.com/hurshbajaj/Spotlight-Dynamix
 cd Spotlight-Dynamix
 npm install
 nodemon backend/app.js
+
 
 
 
