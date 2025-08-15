@@ -1,6 +1,6 @@
 # 🌟 Spotlight
 ---
-
+hi
 ---
 **Spotlight** is a powerful productivity platform built to help students manage their time, organize their work, and make their study process more efficient — all in one place.  
 
@@ -73,6 +73,7 @@ A list of commands given on the right hand side will help you make your mundane 
 <br>
 **Note: The input field is the horizontal strip at the bottom of the page!
 To navigate to the next page, use Shift + Enter until you will be brought back to /menu. Make sure to edit content in the (2) TIMETABLE integration you double click on the textbox / area and enter to save it. The (3) Study Room is fairly simple & self-explanatory as well.
+
 
 
 
