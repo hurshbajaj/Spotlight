@@ -14,7 +14,7 @@ mongoose.connect(process.env.MONGO_URI, {
   .catch(err => console.log("MongoDB connection error:", err));
 
 let app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 app.use(cp());
 app.use(express.json());
@@ -47,10 +47,11 @@ function is_auth(req, res, nxt) {
 
 }
 
-if(require.main === module){
-  app.listen(PORT, ()=>{
-      console.log(`Listening at PORT ${PORT}`);
-  })
-}
+
+app.listen(PORT, ()=>{
+    console.log(`Listening at PORT ${PORT}`);
+})
+
+
 
 module.exports = app;
