@@ -1,5 +1,6 @@
 # 🌟 Spotlight
 ---
+If you don’t wish to read the full thing, just make sure to progress from the landing page by clicking on the cyan button on top, and use Shift + Enter to navigate around once you’ve hit the to-do list for easy flow.  
 ---
 **Spotlight** is a powerful productivity platform built to help students manage their time, organize their work, and make their study process more efficient — all in one place.
 
@@ -49,44 +50,3 @@ git clone https://github.com/hurshbajaj/Spotlight-Dynamix
 cd Spotlight-Dynamix
 npm install
 nodemon backend/app.js
-```
-
-## 🔧 How to use it
-
-You will initially be greeted with something like   
-<br>
-![Image](imgs/Screenshot%202025-07-23%20213137.png)
-<br>
-
-Simply click on the cyan-green island at top very top to progress... taking you to the menu.
-
-![alt text](imgs/Screenshot%202025-07-23%20214050.png)
-
-You must be signed in to access **Let's Go**. Authorization involves a mail being sent to you preferred gmail. After the same, you will be guided to (1) the TODO integration
-
-![alt text](imgs/image.png)
-
-A list of commands given on the right hand side will help you make your mundane planning much more comfortable & easier. *Example Command* 
-<br>
-```new dynamix submission | 23/07/2025```
-<br>
-**Note: The input field is the horizontal strip at the bottom of the page!
-To navigate to the next page, use Shift + Enter until you will be brought back to /menu. Make sure to edit content in the (2) TIMETABLE integration you double click on the textbox / area and enter to save it. The (3) Study Room is fairly simple & self-explanatory as well.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
