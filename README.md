@@ -1,6 +1,6 @@
 # 🌟 Spotlight
 
-**Spotlight** is a powerful productivity platform built to help students manage their time, organize their work, and make their study process more efficient — all in one place.
+**Spotlight** is a powerful productivity platform built to help students manage their time, organize their work, and make their study process more efficient - all in one place.
 
 ---
 
@@ -26,12 +26,12 @@
 - **MongoDB** – Database for users and schedules
 - **HTML/CSS/JavaScript** – Interactive frontend
 - **Cookie Parser + Dotenv** – Secure sessions and environment control
-
+- **Immense Love and Respect for tech** - ;)
 ---
 
 ## 👨‍💻 Made By
 
-Crafted with dedication and a love for tech by **Hursh Bajaj**, an EXUN member with a vision for streamlined student productivity.
+Crafted with dedication and a love for tech by **Hursh Bajaj** | with a vision for streamlined student productivity. 
 
 ---
 
@@ -40,9 +40,9 @@ Crafted with dedication and a love for tech by **Hursh Bajaj**, an EXUN member w
 Just run these in your command-line to get the site up and running. (BASH)
 
 [env format] <br>
-EMAIL_USER= <br>
-EMAIL_PASS= (app password)<br>
-MONGO_URI= <br>
+EMAIL_USER= (Auth Mail Sender!)<br>
+EMAIL_PASS= (App Password!)<br>
+MONGO_URI= (Database!)<br>
 
 ```bash
 git clone https://github.com/hurshbajaj/Spotlight-Dynamix
@@ -68,12 +68,10 @@ You must be signed in to access **Let's Go**. Authorization involves a mail bein
 
 A list of commands given on the right hand side will help you make your mundane planning much more comfortable & easier. *Example Command* 
 <br>
-```new dynamix submission | 23/07/2025```
+```new Ship a project to hc! | 23/07/2025```
 <br>
-**Note: The input field is the horizontal strip at the bottom of the page!
+Here, (new) initiated the command, anything after the keyword will be taken as part of the entry. The part before the "|" must be the task itself, while the part after would be the date, preferabely in the format - dd/mm/yyy
+<br>
+**Note: The input field is the horizontal strip at the bottom of the page! That's where you can write commands :D   
 To navigate to the next page, use Shift + Enter until you will be brought back to /menu. Make sure to edit content in the (2) TIMETABLE integration you double click on the textbox / area and enter to save it. The (3) Study Room is fairly simple & self-explanatory as well.
-
-
-
-
 

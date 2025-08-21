@@ -39,6 +39,15 @@
     }
 }
 
+@keyframes twinkle_bit {
+    0%, 50% ,100% {
+        opacity: 1;
+    }
+    25%, 75% {
+        opacity: 0.6;
+    }
+}
+
 @keyframes moveStars {
     from {
         transform: translateY(0);

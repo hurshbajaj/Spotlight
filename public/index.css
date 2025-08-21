@@ -17,11 +17,13 @@ body {
 .sl {
     width: 10vw;
     transition: transform 0.2s ease, width 1s ease;
+    animation: twinkle_bit 1s 2s ease;
 }
 
 .sl:hover {
     transform: translateY(-5px);
     cursor: pointer;
+    animation: none;
 }
 
 .main{

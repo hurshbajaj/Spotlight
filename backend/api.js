@@ -40,6 +40,8 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+
+
 router.post("/sign-up", async (req, res) => {
   const { gmail } = req.body;
   if (!gmail) return res.status(400).json({ error: "Gmail is required" });

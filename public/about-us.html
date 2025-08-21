@@ -25,8 +25,7 @@ Created by EXUN member Hursh Bajaj, Spotlight features seamless sign-in and sign
 
 The Timetable Manager offers a clean, visual overview of your weekly schedule—making it easy to map out classes, plan study blocks, and maintain balance. For collaboration, the Study Rooms page brings students together with built-in Google Meet links, allowing instant access to focused group sessions or peer discussions.
 
-From smart design to practical power, Spotlight is the ultimate digital study companion—designed to help you work smarter, not harder.
-        </p>
+From smart design to practical power, Spotlight is the ultimate digital study companion—designed to help you work smarter, not harder.</p>
     </div>
 
     <button onclick="window.location.href='/menu'"><i class='bx bx-transfer'></i></button>
@@ -40,6 +39,7 @@ From smart design to practical power, Spotlight is the ultimate digital study co
             const original = document.getElementById(id);
 
             const lines = original.textContent.split('.');
+            lines.pop();
             const parent = original.parentNode;
 
             const wrapper = document.createElement('div');

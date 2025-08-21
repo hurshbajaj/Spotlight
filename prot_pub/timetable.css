@@ -99,10 +99,14 @@ body {
 }
 .clr{
     letter-spacing: 5px;
+    transition: opacity 0.1s ease-out;
 }
-.clr{
+.clr:hover{
     cursor: pointer;
-
+    opacity: 0.6;
+}
+.date:hover{
+    cursor: pointer;
 }
 
 .bot{

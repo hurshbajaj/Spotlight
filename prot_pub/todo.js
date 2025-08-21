@@ -4,6 +4,7 @@ fade_in();
 function FadeOut(){
     fade_out();
     setTimeout(() => {
+      alert("")
         window.location.href = "/user/timetable";
     }, 1000);
 }
